@@ -1,0 +1,41 @@
+{
+  "dashboard-summary": {
+    "credit": 300,
+    "debit": 120
+  },
+  "billingcycles": [
+    {
+      "id": 1,
+      "name": "Janeiro/2020",
+      "month": "2",
+      "year": "2020",
+      "credits": [
+        {
+          "name": "Salário Empresa",
+          "value": 1500
+        },
+        {
+          "name": "Salário Professor1",
+          "value": 800
+        }
+      ],
+      "debits": [
+        {
+          "name": "Condomínio",
+          "value": 150,
+          "status": "1"
+        },
+        {
+          "name": "Internet",
+          "value": 99,
+          "status": "2"
+        },
+        {
+          "name": "TV a cabo",
+          "value": "69",
+          "status": "3"
+        }
+      ]
+    }
+  ]
+}

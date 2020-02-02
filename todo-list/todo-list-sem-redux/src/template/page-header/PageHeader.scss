@@ -1,0 +1,12 @@
+$gray: lighten($color: #000000, $amount: 50%);
+
+.page-header {
+    padding: 20px 0 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $gray;
+
+    small {
+        font-size: .5em;
+        color: $gray;
+    }
+}
