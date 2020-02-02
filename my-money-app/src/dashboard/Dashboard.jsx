@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import ValueBox from '../common/value-box/ValueBox';
 import Content from '../common/template/content/Content';
 import ContentHeader from '../common/template/content/ContentHeader';
-import ValueBox from './value-box/ValueBox';
+
 import Row from '../common/layout/grid/Row';
 import Col from '../common/layout/grid/Col';
 import { getSummary } from './dashboard-actions'
@@ -23,7 +23,7 @@ class Dashboard extends Component {
                 <Content>
                     <Row>
                         <Col grid="12 4">
-                            <ValueBox 
+                            <ValueBox
                                 value={credit}
                                 text="Total de Créditos"
                                 icon="bank"
