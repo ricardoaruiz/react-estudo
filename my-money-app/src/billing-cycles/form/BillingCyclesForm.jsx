@@ -12,6 +12,7 @@ import Row from '../../common/layout/grid/Row';
 import If from '../../common/operators/If/If';
 import { init } from '../billing-cycles-actions';
 import CreditDebitList, { TYPE } from '../credit-debit-list/CreditDebitList';
+import Summary from '../summary/Summary';
 
 export const FORM_NAME = 'billingCyclesForm';
 
@@ -32,10 +33,27 @@ const minYear = value => {
 }
 
 class BillingCyclesForm extends Component {
-     
+    
+    calculateSummary = () => {
+        const totalCredits = this.props.credits
+            .map(credit => +credit.value || 0)
+            .reduce((total, value) => total + value);
+
+        const totalDebits = this.props.debits
+            .map(debit => +debit.value || 0)
+            .reduce((total, value) => total + value);
+
+        return { 
+            totalCredits: totalCredits ? Math.round(totalCredits * 100) / 100 : 0, 
+            totalDebits: totalDebits ? Math.round(totalDebits * 100) / 100 : 0
+        };
+    }
+
     render() { 
         const { handleSubmit, pristine, submitting, 
                 invalid, readOnly, credits, debits } = this.props;
+
+        const { totalCredits, totalDebits } = this.calculateSummary();
 
         return (
             <form onSubmit={handleSubmit(this.props.onConfirm.bind(this))}>
@@ -75,6 +93,12 @@ class BillingCyclesForm extends Component {
                                 warn={[minYear]}
                             />
                         </Col>
+                    </Row>
+                    <Row>
+                        <Summary
+                            credit={totalCredits}
+                            debit={totalDebits}
+                        />
                     </Row>
                     <Row>
                         <Col grid="12 6">

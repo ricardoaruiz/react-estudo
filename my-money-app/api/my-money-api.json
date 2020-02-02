@@ -12,22 +12,22 @@
       "credits": [
         {
           "name": "Salário Empresa",
-          "value": 1500
+          "value": "1500"
         },
         {
           "name": "Salário Professor1",
-          "value": 800
+          "value": "800"
         }
       ],
       "debits": [
         {
           "name": "Condomínio",
-          "value": 150,
+          "value": "150",
           "status": "1"
         },
         {
           "name": "Internet",
-          "value": 99,
+          "value": "99",
           "status": "2"
         },
         {
