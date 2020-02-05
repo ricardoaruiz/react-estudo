@@ -10,7 +10,11 @@ import Nav from '../components/template/nav/Nav';
 const App = props => {
   return (
     <div className="app">
-      <Logo />
+      <Logo 
+        image="user-plus" 
+        size="large"
+        className="logo-create-user"
+      />
       <Nav />
       <Main />
       <Footer />
