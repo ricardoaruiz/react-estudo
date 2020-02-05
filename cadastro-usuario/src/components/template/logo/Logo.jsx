@@ -17,6 +17,7 @@ const Logo = props => {
             <i 
                 className={toCssClass()}
             />
+            <div className="title">{props.title}</div>
         </aside>
     );
 }

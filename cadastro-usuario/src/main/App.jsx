@@ -11,7 +11,8 @@ const App = props => {
   return (
     <div className="app">
       <Logo 
-        image="user-plus" 
+        image="user-plus"
+        title="Cadastro Usuário"
         size="large"
         className="logo-create-user"
       />
