@@ -7,9 +7,11 @@ import Header from '../header/Header';
 const Main = props => {
     return (
         <React.Fragment>
-            <Header />
-            <div className="content">
-                Conteúdo
+            <Header {...props} />
+            <div className="content container-fluid">
+                <div className="p-3 mt-3">
+                    {props.children}
+                </div>
             </div>
         </React.Fragment>
     );

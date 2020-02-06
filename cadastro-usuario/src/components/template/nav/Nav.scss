@@ -1,3 +1,21 @@
+@import '../../../assets/style/variables';
+
 .menu-area {
     grid-area: menu;
+    background-color: $bg-dark;
+    box-shadow: $shadow;
+
+    .menu {
+        a {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            padding: 15px;
+            font-weight: 300;
+
+            &:hover {
+                background: green;
+            }
+        }
+    }
 }

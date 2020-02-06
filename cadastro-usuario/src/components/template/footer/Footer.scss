@@ -1,3 +1,12 @@
+@import '../../../assets/style/variables';
+
 .footer {
     grid-area: footer;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 25px;
+    background-color: #fff;
+    box-shadow: $shadow;
 }
