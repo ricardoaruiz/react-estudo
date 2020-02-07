@@ -1,6 +1,7 @@
 import './Logo.scss';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Logo = props => {
 
@@ -14,10 +15,12 @@ const Logo = props => {
 
     return (
         <aside className="logo">
-            <i 
-                className={toCssClass()}
-            />
-            <div className="title">{props.title}</div>
+            <Link to={props.mainPageLink} >
+                <i 
+                    className={toCssClass()}
+                />
+                <div className="title">{props.title}</div>
+            </Link>
         </aside>
     );
 }
