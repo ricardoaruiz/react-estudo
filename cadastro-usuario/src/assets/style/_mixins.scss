@@ -1,0 +1,11 @@
+@mixin device($type) {
+    @if $type == medium {
+        @media only screen and (max-width: 768px) {
+            @content;
+        }
+    } @else if $type == small {
+        @media only screen and (max-width: 576px) {
+            @content;
+        }
+    }
+}
