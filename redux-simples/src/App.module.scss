@@ -1,0 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.line {
+  display: flex;
+}
+h1 {
+  font-weight: 200;
+  font-size: 2rem;
+}
+
+@media (max-width: 991px) {
+  .line {
+    flex-direction: column;
+  }
+}

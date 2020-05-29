@@ -1,0 +1,51 @@
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      flex: 1;
+      padding: 5px;
+
+      &.red {
+        color: #fff;
+        background-color: darken(#c62828, 10);
+      }
+      &.green {
+        color: #fff;
+        background-color: darken(green, 10);
+      }
+      &.blue {
+        color: #fff;
+        background-color: darken(blue, 10);
+      }
+      &.purple {
+        color: #fff;
+        background-color: darken(purple, 10);
+      }
+    }
+
+  }
+  .content {
+    padding: 20px;
+
+    &.red {
+      background-color: #c62828;
+    }
+    &.green {
+      background-color: green;
+    }
+    &.blue {
+      background-color: blue;
+    }
+    &.purple {
+      background-color: purple;
+    }    
+  }
+}
