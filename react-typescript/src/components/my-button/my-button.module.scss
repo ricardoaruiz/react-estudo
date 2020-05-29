@@ -1,0 +1,55 @@
+.my-button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e4e2e2;
+    font-size: 1.2rem;
+    outline: none;
+    color: #fff;
+
+    &.primary {
+        background: blue;
+    
+        &:hover {
+            cursor: pointer;
+            background: darken(blue, 10);
+        }    
+    }
+    &.success {
+        background: green;
+    
+        &:hover {
+            cursor: pointer;
+            background: darken(green, 10);
+        }    
+    }
+    &.danger {
+        background: red;
+    
+        &:hover {
+            cursor: pointer;
+            background: darken(red, 10);
+        }    
+    }
+    &.warn {
+        background: yellow;
+        color: #333;
+    
+        &:hover {
+            cursor: pointer;
+            background: darken(yellow, 10);
+        }    
+    }
+    &:hover {
+        cursor: pointer;
+        background: darken(#e4e2e2, 10);
+    }
+    &:disabled {
+        background: #b4b4b4;
+        &:hover {
+            cursor: default;
+            background: #b4b4b4;
+        }        
+    }
+
+}
