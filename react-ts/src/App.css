@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-bottom: 10px; */
+}
+
+.col {
+  flex: 1;
+  margin: 5px;
+}
