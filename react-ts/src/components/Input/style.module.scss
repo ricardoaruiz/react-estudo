@@ -10,12 +10,6 @@
     font-size: 1rem;
     color: #222;
     transition: all .3s ease-out;
-
-    &.focused {
-      top: 0;
-      left: 0;
-      font-size: .9rem;
-    }
   }
 
   input {
@@ -26,8 +20,19 @@
     outline: none;
     transition: all .3s ease-out;
 
+    &::placeholder {
+      color: transparent;
+    }
+
     &:focus {
       border: 1px solid gray;
+    }
+
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: 0;
+      left: 0;
+      font-size: .9rem;
     }
 
   }
