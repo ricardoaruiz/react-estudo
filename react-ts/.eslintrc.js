@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   extends: [
     'airbnb',
@@ -21,6 +22,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    "jest",
   ],
   ignorePatterns: ["**/*test.tsx"],
   rules: {

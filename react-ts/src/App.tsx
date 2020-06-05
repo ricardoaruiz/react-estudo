@@ -36,7 +36,7 @@ function App() {
         <p>Botões com SCSS modules</p>
       </div>
       <div className="line">
-        <Button onClick={handleButtonClick} primary>Conteudo</Button>
+        <Button type="submit" onClick={handleButtonClick} primary>Conteudo</Button>
         <Button onClick={handleButtonClick} success>Conteudo</Button>
         <Button onClick={handleButtonClick} error>Conteudo</Button>
         <Button onClick={handleButtonClick} warn>Conteudo</Button>

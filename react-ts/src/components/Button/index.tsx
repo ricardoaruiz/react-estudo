@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import style from './style.module.scss';
 
 interface IButtonProps {
+    type?: 'button' | 'submit',
     label?: string,
     primary?: boolean,
     success?: boolean,
@@ -14,6 +15,7 @@ interface IButtonProps {
 }
 
 const Button = ({
+  type = 'button',
   label,
   primary = false,
   success = false,
@@ -34,7 +36,7 @@ const Button = ({
 
   return (
     <button
-      type="button"
+      type={type}
       className={classes}
       onClick={onClick}
       disabled={disabled}
