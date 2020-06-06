@@ -1,0 +1,38 @@
+--Criação do projeto
+npx create-react-app react-hooks --typescript
+
+--Instalação e configuração do Lint
+  npm i eslint -D
+  ./node_modules/eslint/bin/eslint.js --init
+
+  ajustar algumas coisas no .eslintrc.js
+  -- https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
+  -- https://github.com/benmosher/eslint-plugin-import/blob/v2.20.1/docs/rules/extensions.md
+  -- https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unresolved.md
+  -- https://stackoverflow.com/questions/31629389/how-to-use-eslint-with-jest
+  -- https://pt-br.reactjs.org/docs/hooks-rules.html (regras para hooks)
+
+    regras adicionadas no .eslintrc.js
+    rules: {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".tsx"] }],
+      "import/extensions":[ "error", "never" ],
+      "import/no-unresolved": "off",
+      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/rules-of-hooks": "error",
+    }, 
+
+--Caso não possua, incluir essas configurações no "settings.json" do vscode
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    //https://www.digitalocean.com/community/tutorials/workflow-auto-eslinting
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "eslint.validate": ["typescriptreact"]
+
+-- Instalar o node-sass
+  npm install node-sass -D
