@@ -1,0 +1,24 @@
+.button-container {
+
+  width: 100%;
+  max-width: 800px;
+
+  .button-component {
+    margin-right: 10px;
+
+    &.block {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.custom-class1 {
+  background: purple;
+  color: green;
+  font-size: 1.2rem;
+}
+.custom-class2 {
+  border: 1px solid red;
+  width: 150px;
+}

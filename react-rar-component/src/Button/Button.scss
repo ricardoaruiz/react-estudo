@@ -1,0 +1,79 @@
+@import "../variables.scss";
+
+.button-component {
+
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  padding: 10px;
+  color: $rrarc-black;
+  font-size: 1rem;
+  background: $rrarc-light-gray;
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    background: darken($rrarc-light-gray, 5);
+  }
+  &:active {
+    background: darken($rrarc-light-gray, 15);
+  }
+
+  &.primary {
+    background: $rrarc-blue;
+    color: $rrarc-white;
+
+    &:hover {
+      background: darken($rrarc-blue, 5);
+    }
+    &:active {
+      background: darken($rrarc-blue, 15);
+    }
+  }
+  &.success {
+    background: $rrarc-green;
+    color: $rrarc-white;
+
+    &:hover {
+      background: darken($rrarc-green, 5);
+    }
+    &:active {
+      background: darken($rrarc-green, 15);
+    }
+  }
+  &.error {
+    background: $rrarc-red;
+    color: $rrarc-white;
+
+    &:hover {
+      background: darken($rrarc-red, 5);
+    }
+    &:active {
+      background: darken($rrarc-red, 15);
+    }
+  }
+  &.warn {
+    background: $rrarc-orange;
+    color: $rrarc-white;
+
+    &:hover {
+      background: darken($rrarc-orange, 5);
+    }
+    &:active {
+      background: darken($rrarc-orange, 15);
+    }    
+  }
+  &:disabled {
+    background: $rrarc-gray;
+    cursor: not-allowed;
+
+    &:hover {
+      background: $rrarc-gray;
+    }
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+}

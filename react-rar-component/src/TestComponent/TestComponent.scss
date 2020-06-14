@@ -1,0 +1,19 @@
+@import "../variables.scss";
+@import "../typography.scss";
+
+.test-component {
+  background-color: $rrarc-white;
+  border: 1px solid $rrarc-black;
+  padding: 16px;
+  width: 360px;
+  text-align: center;
+
+  .heading {
+    @include heading;
+  }
+
+  &.test-component-secondary {
+    background-color: $rrarc-black;
+    color: $rrarc-white;
+  }
+}
