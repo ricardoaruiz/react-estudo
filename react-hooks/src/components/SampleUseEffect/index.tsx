@@ -11,15 +11,21 @@ const SampleUseEffect = () => {
   // Similar ao componentDidMount e componentDidUpdate
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.log('SampleUseEffect => Passando na construção do componente e sempre que ocorrer mudanças de estado');
+    console.log(
+      'SampleUseEffect => Passando na construção do componente e sempre que ocorrer mudanças de estado'
+    );
 
-    setMessage(count ? `Você clicou ${count} vezes` : 'Você ainda não clicou no botão');
+    setMessage(
+      count ? `Você clicou ${count} vezes` : 'Você ainda não clicou no botão'
+    );
   }, [count]);
 
   return (
     <div className={style['use-effect-sample']}>
       <p>{message}</p>
-      <button type="button" onClick={() => setCount(count + 1)}>Incrementar</button>
+      <button type="button" onClick={() => setCount(count + 1)}>
+        Incrementar
+      </button>
     </div>
   );
 };
