@@ -1,0 +1,25 @@
+1 -- Criando o projeto com typescript
+npm create-react-app react-redux-ts
+
+2 -- Instalando dependências para style guide
+npm i eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-import-resolver-typescript eslint-config-prettier eslint-plugin-prettier prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser -D
+
+3 -- Criar o arquivo .eslintrc.js
+    pegar o arquivo existente como exemplo
+
+4 - Acessar a configuração do vsCode
+Adicionar as linhas abaixo no settings.json do vsCode
+    "editor.rulers": [80, 120],
+    "eslint.enable": true,
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact"
+    ]
+
+5 - Adicionar as dependencias do redux
+npm i react-redux redux typesafe-actions -P
+npm i @types/react-redux -D
+
+6 - Redux Saga
+npm i axios redux-saga
+npm i @types/redux-saga -E

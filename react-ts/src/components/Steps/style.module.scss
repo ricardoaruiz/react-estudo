@@ -1,0 +1,33 @@
+.step-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  counter-reset: step;
+  
+  .step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 0.125rem solid blue;
+
+    &.completed {
+      background: blue;
+      color: #fff;
+    }
+  }
+
+  .path {
+    height: 0.125rem;
+    width: 6.25rem;
+    background: gray;
+
+    &.completed {
+      background: blue;
+    }
+  }
+
+}

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Button from './components/Button';
 import ButtonStyled from './components/ButtonStyled';
 import Input from './components/Input';
+import Steps from './components/Steps';
 
 function App() {
   const [nome, setNome] = useState('');
@@ -86,7 +87,17 @@ function App() {
           />
         </div>
       </div>
+
+      <div className="line">
+        <p>Steps com SCSS modules</p>
+      </div>
+      <div className="line">
+        <Steps />
+      </div>
+
     </div>
+
+
   );
 }
 
