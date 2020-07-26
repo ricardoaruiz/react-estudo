@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
-export const Main = styled.section``;
+export const Main = styled.section`
+  width: 100%;
+  max-width: 40rem;
+  margin: 2rem auto 0 auto;
+
+  & form {
+    padding: 0 1rem;
+  }
+`;
 
 export const FormControl = styled.div`
   display: flex;
@@ -10,6 +18,8 @@ export const FormControl = styled.div`
   & input {
     padding: 0.5rem;
     outline: none;
+    border-radius: 4px;
+    border: 1px solid lightgray;
   }
 
   & span {

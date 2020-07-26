@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, FormEvent } from 'react';
 import * as Yup from 'yup';
 
 import useFormValidation from '../hooks/useFormValidation';
@@ -42,22 +42,47 @@ function App() {
   }
 
   // const { data, errors, toucheds, onChange, onBlur, onSubmit } = useFormValidation(initialData, validations, null);
-  const { data, errors, toucheds, onChange, onBlur, onSubmit } = useFormValidation(initialData, null, yupValidations);
+  const { data, errors, toucheds, onChange, onBlur, onSubmit, onReset, isValid } = useFormValidation(initialData, null, yupValidations);
+
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+    onSubmit(event);
+    if (isValid) {
+      console.log('Vai enviar')
+    } else {
+      console.log('Não vai enviar')
+    }
+  }, [isValid, onSubmit])
 
   return (
     <S.Main>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <S.FormControl>
           <label htmlFor="nome">Nome</label>
-          <input type="text" id="nome" name="nome" value={data.nome} onChange={onChange} onBlur={onBlur} autoComplete="off" />
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            value={data.nome}
+            onChange={onChange}
+            onBlur={onBlur}
+            autoComplete="off"
+          />
           {errors.nome && toucheds.nome && <span>{errors.nome}</span>}
         </S.FormControl>
         <S.FormControl>
           <label htmlFor="senha">Senha</label>
-          <input type="password" id="senha" name="senha" value={data.senha} onChange={onChange} onBlur={onBlur} />
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            value={data.senha}
+            onChange={onChange}
+            onBlur={onBlur}
+          />
           {errors.senha && toucheds.senha && <span>{errors.senha}</span>}
         </S.FormControl>
         <button type="submit">Enviar</button>
+        <button type="button" onClick={onReset}>Limpar</button>
       </form>
     </S.Main>
   );

@@ -1,4 +1,12 @@
-import { useCallback, useState, ChangeEvent, useEffect, FormEvent, SyntheticEvent } from 'react';
+import {
+  useCallback,
+  useState,
+  ChangeEvent,
+  useEffect,
+  FormEvent,
+  SyntheticEvent,
+  MouseEvent
+} from 'react';
 import { ObjectSchema, ValidationError } from 'yup';
 
 interface IValues {
@@ -31,15 +39,19 @@ function useFormValidation(initialData: IValues, validations: IValidations | nul
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [errors, setErrors] = useState<IErrors>(() => initErrors());
-
-  const [toucheds, setToucheds] = useState<IToucheds>(() => {
+  const initToucheds = useCallback(() => {
     const initialToucheds: IToucheds = {};
     Object.keys(initialData).forEach(key => {
       initialToucheds[key] = false;
     });
     return initialToucheds;
-  });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [isValid, setIsValid] = useState(false);
+  const [errors, setErrors] = useState<IErrors>(() => initErrors());
+  const [toucheds, setToucheds] = useState<IToucheds>(() => initToucheds());
 
   const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -57,6 +69,7 @@ function useFormValidation(initialData: IValues, validations: IValidations | nul
     if (yupValidations) {
       try {
         await yupValidations.validate(data, { abortEarly: false });
+        setErrors(initErrors());
       } catch (yupErrors) {
         if (yupErrors instanceof ValidationError) {
           Object.keys(errors).forEach(error => {
@@ -83,7 +96,11 @@ function useFormValidation(initialData: IValues, validations: IValidations | nul
   }, []);
 
   const touchAllFields = useCallback((data: IValues) => {
-    Object.keys(toucheds).forEach(field => toucheds[field] = true);
+    const allTouched = { ...toucheds };
+    Object.keys(allTouched).forEach(field => {
+      allTouched[field] = true;
+    });
+    setToucheds(allTouched);
   }, [toucheds]);
 
   const onSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
@@ -92,11 +109,27 @@ function useFormValidation(initialData: IValues, validations: IValidations | nul
     touchAllFields(data);
   }, [data, touchAllFields, validate])
 
+  const onReset = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    const resetData = { ...data };
+    Object.keys(resetData).forEach(field => {
+      resetData[field] = ''
+    });
+    setData(resetData);
+    setErrors(initErrors());
+    setToucheds(initToucheds());
+  }, [data, initErrors, initToucheds])
+
   useEffect(() => {
     validate(data);
   }, [data, toucheds, validate]);
 
-  return { data, errors, toucheds, onChange, onBlur, onSubmit };
+
+  useEffect(() => {
+    const hasErrors = Object.keys(errors).some(field => errors[field] !== '')
+    setIsValid(!hasErrors);
+  }, [errors]);
+
+  return { data, errors, toucheds, onChange, onBlur, onSubmit, onReset, isValid };
 }
 
 export default useFormValidation;
