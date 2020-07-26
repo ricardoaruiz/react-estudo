@@ -1,6 +1,7 @@
 import React from 'react';
-import useFormValidation from '../hooks/useFormValidation';
+import * as Yup from 'yup';
 
+import useFormValidation from '../hooks/useFormValidation';
 import * as S from './styles.js';
 
 interface IFormData {
@@ -15,6 +16,13 @@ function App() {
     senha: ''
   };
 
+  // Validação com YUP
+  const yupValidations = Yup.object().shape({
+    nome: Yup.string().required('O campo nome é obrigatório'),
+    senha: Yup.string().min(6, 'O campo senha deve possuir no mínimo 6 caracteres')
+  });
+
+  // Validação básica
   const validations = {
     nome: (data: IFormData): string => {
       if (!data.nome) {
@@ -33,14 +41,15 @@ function App() {
     }
   }
 
-  const { data, errors, toucheds, onChange, onBlur, onSubmit } = useFormValidation(initialData, validations);
+  // const { data, errors, toucheds, onChange, onBlur, onSubmit } = useFormValidation(initialData, validations, null);
+  const { data, errors, toucheds, onChange, onBlur, onSubmit } = useFormValidation(initialData, null, yupValidations);
 
   return (
     <S.Main>
       <form onSubmit={onSubmit}>
         <S.FormControl>
           <label htmlFor="nome">Nome</label>
-          <input type="text" id="nome" name="nome" value={data.nome} onChange={onChange} onBlur={onBlur} />
+          <input type="text" id="nome" name="nome" value={data.nome} onChange={onChange} onBlur={onBlur} autoComplete="off" />
           {errors.nome && toucheds.nome && <span>{errors.nome}</span>}
         </S.FormControl>
         <S.FormControl>
