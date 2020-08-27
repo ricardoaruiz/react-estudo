@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { GetStaticProps, GetServerSideProps } from 'next'
 
+import { cms } from '../config/contentful'
 import Logo from '../assets/logo.svg'
 
 import * as S from '../styles/pages/Home'
@@ -37,6 +38,9 @@ const Home: React.FC<HomeProps> = ({ prop1, prop2, prop3 }) => {
 // https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation
 export const getStaticProps: GetStaticProps = async () => {
   // Aqui podemos buscar dados de uma API externa, de um CMS ou até do file system
+
+  const recipesResponse = await cms.getEntries({ content_type: 'recipes' })
+  console.log('recipesResponse', recipesResponse)
 
   return {
     props: {
