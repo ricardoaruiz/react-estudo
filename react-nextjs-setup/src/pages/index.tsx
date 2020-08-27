@@ -36,6 +36,8 @@ const Home: React.FC<HomeProps> = ({ prop1, prop2, prop3 }) => {
 // Build time
 // https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation
 export const getStaticProps: GetStaticProps = async () => {
+  // Aqui podemos buscar dados de uma API externa, de um CMS ou até do file system
+
   return {
     props: {
       prop1: 'Static Prop 01',
@@ -48,6 +50,8 @@ export const getStaticProps: GetStaticProps = async () => {
 // Request time
 // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
 const getServerSideProps: GetServerSideProps = async () => {
+  // Aqui podemos buscar dados de uma API externa ou de um CMS
+
   return {
     props: {
       prop1: 'Server Side Prop 01',
