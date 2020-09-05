@@ -8,7 +8,11 @@ const useOnlineVerify = (connectedFlag: number) => {
     setOnline(connectedFlag === 1);
   }, [connectedFlag]);
 
-  return online;
+  const teste = () => {
+    console.log('Online', online);
+  };
+
+  return { online, teste };
 };
 
 export default useOnlineVerify;

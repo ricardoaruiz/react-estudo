@@ -14,6 +14,7 @@ interface FormData {
 }
 
 function App() {
+  console.log(process.env.REACT_APP_API_KEY)
   const initialValues: FormData = { name: '', email: '' };
 
   const validationSchema = Yup.object().shape({

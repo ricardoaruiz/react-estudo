@@ -10,7 +10,7 @@ const SampleCustomHook = () => {
   const connectedFlag = Math.floor(Math.random() * 2);
 
   // Utilização de um custom hook que pode ser reaproveitado em outros componentes
-  const online = useOnlineVerify(connectedFlag);
+  const { online, teste } = useOnlineVerify(connectedFlag);
 
   // Hook sendo usado diretamente no componente
   // const [online, setOnline] = useState(false);
@@ -26,7 +26,10 @@ const SampleCustomHook = () => {
     <div className={style['custom-hook-sample']}>
       Você está
       {' '}
-      <span className={online ? style.online : style.offline}>{online ? 'on-line' : 'off-line'}</span>
+      <span className={online ? style.online : style.offline}>{online ? 'on-line1' : 'off-line'}</span>
+      <button type="button" onClick={teste}>
+        Teste
+      </button>
     </div>
   );
 };

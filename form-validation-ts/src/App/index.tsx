@@ -42,7 +42,15 @@ function App() {
   }
 
   // const { data, errors, toucheds, onChange, onBlur, onSubmit } = useFormValidation(initialData, validations, null);
-  const { data, errors, toucheds, onChange, onBlur, onSubmit, onReset, isValid } = useFormValidation(initialData, null, yupValidations);
+  const {
+    data,
+    errors,
+    toucheds,
+    onChange,
+    onBlur,
+    onSubmit,
+    onReset,
+    isValid } = useFormValidation(initialData, null, yupValidations);
 
   const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     onSubmit(event);
