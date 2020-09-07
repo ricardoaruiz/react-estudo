@@ -10,6 +10,6 @@ const fade = keyframes`
 `;
 
 export const TabContainer = styled.div`
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${(props) => (props.show ? 'block' : 'none')};
   animation: ${fade} 0.5s;
 `;

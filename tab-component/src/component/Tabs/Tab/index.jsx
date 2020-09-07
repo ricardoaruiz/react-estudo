@@ -9,16 +9,16 @@ const Tab = (props) => {
     <S.TabContainer show={show}>
       {children}
     </S.TabContainer>
-  )
-}
+  );
+};
 
 Tab.defaultProps = {
   show: false,
-}
+};
 
 Tab.propTypes = {
   children: PropTypes.element.isRequired,
   show: PropTypes.bool,
-}
+};
 
 export default Tab;
