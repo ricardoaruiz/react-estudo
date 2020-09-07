@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components';
 
+const normalColor = '#7a7a7a';
+const activeColor = '#0f0f0f';
+const disabledColor = '#E2DFDF';
+const normalBorder = `1px solid ${normalColor}`;
+const activeBorder = `2px solid ${activeColor}`;
+
 export const TabsContainer = styled.div`
   width: 100%;
 `;
@@ -16,57 +22,70 @@ export const TabsHeaderItem = styled.li`
   position: relative;
   width: 100%;
   min-width: 8rem;
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   text-align: center;
   transition: all 0.1s;
 
-    ${(props) => (props.overlappingTabs
-    ? css`
-        ${props.active ? css`
-            &::before {
-              position: absolute;
-              content: '';
-              bottom: 0px;
-              left: 0;
-              width: 0.5rem;
-              border-bottom: 1px solid #0f0f0f;
-            }
-            &::after {
-              position: absolute;
-              content: '';
-              bottom: 0;
-              right: 0;
-              width: 0.5rem;
-              border-bottom: 1px solid #0f0f0f;
-            }
-          ` : css`
-            border-bottom: 1px solid #0f0f0f;
-            color: '#0f0f0f';
-          `}
-      `
-    : css`
-          border-bottom: ${props.active ? '2px solid #0f0f0f' : '1px solid #7a7a7a'};
-          color: ${props.active ? '#0f0f0f' : '#7a7a7a'};
+  ${(props) => css`
+    cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
+    color: ${props.disabled ? disabledColor : normalColor};
+  `}
 
-          & + li {
-            margin-left: .5rem;
-          }
-      `)}
+  ${(props) => (!props.overlappingTabs
+    ? css`
+        border-bottom: ${props.active ? activeBorder : normalBorder};
+
+        & + li {
+          margin-left: .5rem;
+        }`
+    : css`
+        &::before {
+          position: absolute;
+          content: '';
+          bottom: -1px;
+          left: 0;
+          width: 0.5rem;
+          border-bottom: ${normalBorder};
+        }
+        &::after {
+          position: absolute;
+          content: '';
+          bottom: -1px;
+          right: 0;
+          width: 0.5rem;
+          border-bottom: ${normalBorder};
+        }
+        &:first-child::before {
+          border-bottom: unset;
+        }
+        &:last-child::after {
+          border-bottom: unset;
+        }
+    `)}
 `;
 
 export const TabHeaderItemContent = styled.div`
-  /* padding: 1rem 0; */
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 0.5rem;
   height: 98%;
+
+  color: ${(props) => {
+    if (props.disabled) {
+      return disabledColor;
+    }
+    return props.active ? activeColor : normalColor;
+  }};
+
   ${(props) => props.overlappingTabs
     && css`
-    border: 1px solid #7a7a7a;
-    border-bottom: none;
+    border: ${normalBorder};
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+  `}
+
+  ${(props) => props.active && css`
+    border-bottom: unset;
   `}
 
   & div {
@@ -80,4 +99,10 @@ export const TabHeaderItemContent = styled.div`
 
 export const TabsContentContainer = styled.div`
   padding: 1rem;
+
+  ${(props) => props.overlappingTabs && css`
+    margin: 0 0.5rem;
+    border: ${normalBorder};
+    border-top: none;
+  `}
 `;

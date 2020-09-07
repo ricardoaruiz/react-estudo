@@ -16,14 +16,20 @@ const Tabs = ({
 
   const renderTabs = useCallback((tabsChildren) => React.Children.map(tabsChildren, (tab, index) => {
     const { title, disabled } = tab.props;
+    const active = index === activeTab;
+
     return (
       <S.TabsHeaderItem
         onClick={() => handleTabClick(index, disabled)}
-        active={index === activeTab}
+        active={active}
         disabled={disabled}
         overlappingTabs={overlappingTabs}
       >
-        <S.TabHeaderItemContent overlappingTabs={overlappingTabs}>
+        <S.TabHeaderItemContent
+          overlappingTabs={overlappingTabs}
+          disabled={disabled}
+          active={active}
+        >
           <div>{title}</div>
         </S.TabHeaderItemContent>
       </S.TabsHeaderItem>
@@ -48,7 +54,7 @@ const Tabs = ({
       <S.TabsHeaderContainer>
         {renderTabs(children)}
       </S.TabsHeaderContainer>
-      <S.TabsContentContainer>
+      <S.TabsContentContainer overlappingTabs={overlappingTabs}>
         {renderTabsContent(children)}
       </S.TabsContentContainer>
     </S.TabsContainer>
