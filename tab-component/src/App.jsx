@@ -50,7 +50,7 @@ const Tab2Content = () => {
 
 const App = () => (
   <div className="main">
-    <Tabs>
+    <Tabs overlappingTabs>
       <Tab title="National">
         <Tab1Content />
       </Tab>
@@ -60,6 +60,31 @@ const App = () => (
       <Tab title="Disabled tab" disabled>
         <div>
           <button type="button">Tab 03 Button</button>
+        </div>
+      </Tab>
+      <Tab title="Other tab">
+        <div>
+          <button type="button">Other Button</button>
+        </div>
+      </Tab>
+    </Tabs>
+
+    {/*  */}
+    <Tabs overlappingTabs={false}>
+      <Tab title="National">
+        <Tab1Content />
+      </Tab>
+      <Tab title="International">
+        <Tab2Content />
+      </Tab>
+      <Tab title="Disabled tab" disabled>
+        <div>
+          <button type="button">Tab 03 Button</button>
+        </div>
+      </Tab>
+      <Tab title="Other tab">
+        <div>
+          <button type="button">Other Button</button>
         </div>
       </Tab>
     </Tabs>

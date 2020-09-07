@@ -3,7 +3,9 @@ import React, { useCallback, useState } from 'react';
 
 import * as S from './styles';
 
-const Tabs = ({ children, initialActiveTab, lazyLoadTabs }) => {
+const Tabs = ({
+  children, initialActiveTab, lazyLoadTabs, overlappingTabs,
+}) => {
   const [activeTab, setActiveTab] = useState(initialActiveTab);
 
   const handleTabClick = useCallback((tabIndex, disabled) => {
@@ -19,11 +21,14 @@ const Tabs = ({ children, initialActiveTab, lazyLoadTabs }) => {
         onClick={() => handleTabClick(index, disabled)}
         active={index === activeTab}
         disabled={disabled}
+        overlappingTabs={overlappingTabs}
       >
-        {title}
+        <S.TabHeaderItemContent overlappingTabs={overlappingTabs}>
+          <div>{title}</div>
+        </S.TabHeaderItemContent>
       </S.TabsHeaderItem>
     );
-  }), [activeTab, handleTabClick]);
+  }), [activeTab, handleTabClick, overlappingTabs]);
 
   const renderTabsContent = useCallback((tabsChildren) => {
     if (lazyLoadTabs) {
@@ -53,12 +58,14 @@ const Tabs = ({ children, initialActiveTab, lazyLoadTabs }) => {
 Tabs.defaultProps = {
   initialActiveTab: 0,
   lazyLoadTabs: true,
+  overlappingTabs: false,
 };
 
 Tabs.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   initialActiveTab: PropTypes.number,
   lazyLoadTabs: PropTypes.bool,
+  overlappingTabs: PropTypes.bool,
 };
 
 export default Tabs;
