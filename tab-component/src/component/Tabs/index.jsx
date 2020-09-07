@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types';
+import React, { useCallback, useState } from 'react';
 
 import * as S from './styles';
 
-const Tabs = ({ children, initialActiveTab }) => {
+const Tabs = ({ children, initialActiveTab, lazyLoadTabs }) => {
 
   const [activeTab, setActiveTab] = useState(initialActiveTab);
 
@@ -29,10 +29,19 @@ const Tabs = ({ children, initialActiveTab }) => {
   }, [activeTab, handleTabClick]);
 
   const renderTabsContent = useCallback((tabsChildren) => {
-    return React.Children.map(tabsChildren, (tab, index) => {
-      return React.cloneElement(tab, { show: index === activeTab });
-    })
-  }, [activeTab]);
+    if (lazyLoadTabs) {
+      //Renderiza somente o conteúdo da aba corrente no carregamento do componente
+      return React.Children.toArray(tabsChildren)
+        .filter((_, index) => index === activeTab)
+        .map(tab => React.cloneElement(tab, { show: true }))
+    } else {
+      // Renderiza todas as abas no carregamento do componente
+      return React.Children.map(tabsChildren, (tab, index) => {
+        return React.cloneElement(tab, { show: index === activeTab });
+      })
+    }
+
+  }, [activeTab, lazyLoadTabs]);
 
   return (
     <S.TabsContainer>
@@ -48,11 +57,13 @@ const Tabs = ({ children, initialActiveTab }) => {
 
 Tabs.defaultProps = {
   initialActiveTab: 0,
+  lazyLoadTabs: true,
 }
 
 Tabs.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  initialActiveTab: PropTypes.number
+  initialActiveTab: PropTypes.number,
+  lazyLoadTabs: PropTypes.bool,
 }
 
 export default Tabs;
