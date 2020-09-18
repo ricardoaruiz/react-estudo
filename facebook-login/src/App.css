@@ -1,0 +1,12 @@
+.avatar {
+  width: 200px;
+}
+
+.avatar img {
+  border-radius: 50%;
+}
+
+.kep-login-facebook {
+  width: 200px;
+  font-size: 10px !important;
+}
