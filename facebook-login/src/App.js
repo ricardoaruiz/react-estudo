@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
+import axios from 'axios';
 import './App.css';
 
 //https://www.djamware.com/post/5e6d6a9a05efef95f94c4aed/reactjs-tutorial-facebook-login-example
@@ -9,13 +10,29 @@ function App() {
   const [data, setData] = useState({});
   const [picture, setPicture] = useState('');
 
-  const responseFacebook = (response) => {
-    setData(response);
-    setPicture(response.picture.data.url);
-    if (response.accessToken) {
-      setLogin(true);
-    } else {
-      setLogin(false);
+  const responseFacebook = async (response) => {
+    try {
+      const { accessToken } = response;
+      const userConfirmation = await axios.get(
+        `http://localhost:3333/auth/facebook/token?access_token=${accessToken}`)
+
+      const { data } = userConfirmation;
+      console.log('response do facebook', response)
+      console.log('response do node', userConfirmation);
+
+
+      if (data.NAME) {
+
+        setData(response);
+        setPicture(response.picture.data.url);
+        if (response.accessToken) {
+          setLogin(true);
+        } else {
+          setLogin(false);
+        }
+      }
+    } catch (error) {
+      console.log('Erro ao autenticar pelo facebook');
     }
   }
 
